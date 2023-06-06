@@ -1,28 +1,31 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
+import PropTypes from "prop-types";
 
-function Btn({ text, changeValue }) {
+function Btn({ text, fontSize = 12 }) {
   return (
     <button
-      onClick={changeValue}
       style={{
         backgroundColor: "tomato",
         color: "white",
         padding: "10px 20px",
         border: 0,
         borderRadius: 10,
+        fontSize,
       }}
     >
       {text}
     </button>
   );
 }
+Btn.propTypes = {
+  text: PropTypes.string.isRequired,
+  fontSize: PropTypes.number,
+};
 function App() {
-  const [value, setValue] = useState("Save Changes");
-  const changeValue = () => setValue("Revert Changes");
   return (
     <div>
-      <Btn text={value} changeValue={changeValue} />
-      <Btn text="Continue" />
+      <Btn text="Save Changes" fontSize={18} />
+      <Btn text={"Continue"} />
     </div>
   );
 }
