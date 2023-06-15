@@ -13,6 +13,10 @@ function App() {
     setToDo("");
     console.log(toDos);
   };
+  const deleteBtn = (index) => {
+    setToDos(toDos.filter((item, todoIndex) => index !== todoIndex));
+  };
+
   return (
     <div>
       <h1>My To Dos ({toDos.length})</h1>
@@ -29,6 +33,14 @@ function App() {
       <ul>
         {toDos.map((item, index) => (
           <li key={index}>{item}</li>
+        ))}
+      </ul>
+      <ul>
+        {toDos.map((item, index) => (
+          <li key={index}>
+            {item}
+            <button onClick={() => deleteBtn(index)}>x</button>
+          </li>
         ))}
       </ul>
     </div>
